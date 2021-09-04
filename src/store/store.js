@@ -1,23 +1,19 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 
-import moviesActions from './actions/moviesActions';
-import moviesMutations from './mutations/moviesMutations';
-
 Vue.use(Vuex);
 
+import state from "./state";
+import * as getters from './getters';
+import * as mutations from "./mutations";
+import * as actions from "./actions";
+
 export default new Vuex.Store({
-  state: {
-    movies:'',
-    moviesLoader:false,
-    APIerror:APIerror
-  },
-  mutations: {
-    moviesMutations
-  },
-  actions: {
-    moviesActions
-  },
+  state,
+  getters,
+  mutations,
+  actions,
+  
   modules: {
   },
 });

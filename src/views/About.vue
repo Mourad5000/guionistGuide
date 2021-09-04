@@ -3,3 +3,16 @@
     <h1>This is an about page</h1>
   </div>
 </template>
+
+<script>
+export default {
+  computed: {
+    produt() {
+      return this.$store.state.movies;
+    }
+  },
+  mounted() {
+    this.$store.dispatch("getMovies");
+  }
+};
+</script>

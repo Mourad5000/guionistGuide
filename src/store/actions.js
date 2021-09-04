@@ -1,7 +1,8 @@
 import axios from "axios";
-import APIconstants from "../../constants/APIconstants";
-import headers from "../../constants/headers";
+import APIconstants from "../constants/APIconstants";
+import headers from "../constants/headers";
 
+// los commits no deben ser magic strings
 export function getMovies() {
   return async ({ commit }) => {
     try {
