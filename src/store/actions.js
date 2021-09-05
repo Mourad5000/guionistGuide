@@ -8,7 +8,7 @@ const headers={
 
 // los commits no deben ser magic strings
 export default {
-  getMoviesAction: async function ({commit}) {
+  getCharactersAction: async function ({commit}) {
     try {
         commit("SET_MOVIES_LOADING",true);
         const endPoint = `${APIconstants.API_URL}${APIconstants.REQUEST_CHARACTERS}`;

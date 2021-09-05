@@ -14,6 +14,8 @@
     :expanded.sync="expanded"
     show-expand
     item-key="_id"
+    class="characters__table"
+    @click:row="handleCharacterClick"
   >
     <template v-slot:top>
         <h1>Expandable Table</h1>
@@ -60,12 +62,21 @@ export default {
   },
 
   created() {
-    this.getMovies();
+    this.getCharacters();
   },
   methods: {
-    getMovies: function() {
-      this.$store.dispatch("getMoviesAction");
+    getCharacters: function() {
+      this.$store.dispatch("getCharactersAction");
+    },
+    handleCharacterClick(value){
+      this.$router.push({path:`character/${value._id}`})
     }
   }
 };
 </script>
+
+<style>
+.characters__table{
+  cursor: pointer;
+}
+</style>

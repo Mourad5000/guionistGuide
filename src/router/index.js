@@ -3,6 +3,7 @@ import VueRouter from 'vue-router';
 
 // components
 import Characters from '../views/Characters.vue'
+import CharacterQuotes from '../views/CharacterQuotes.vue'
 
 Vue.use(VueRouter);
 
@@ -12,6 +13,10 @@ const routes = [
     name: 'Characters',
     component: Characters,
   },
+  {
+    path:'/character/:id',
+    component:CharacterQuotes
+  }
 
 ];
 
