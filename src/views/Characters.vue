@@ -16,11 +16,7 @@
     item-key="_id"
   >
     <template v-slot:top>
-      <!-- <v-toolbar flat> -->
         <h1>Expandable Table</h1>
-        <!-- <v-spacer></v-spacer>
-        <v-switch v-model="singleExpand" label="Single expand" class="mt-2"></v-switch>
-      </v-toolbar> -->
     </template>
     <template v-slot:expanded-item="{ headers, item }">
       <td v-if="item.wikiUrl" :colspan="headers.length">
