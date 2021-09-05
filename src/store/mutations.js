@@ -10,6 +10,6 @@ export default {
 
   SET_MOVIES_ERROR(state, apiError) {
     state.moviesLoader = false;
-    state.APIerror = apiError;
+    state.moviesApiError = apiError;
   }
 };
