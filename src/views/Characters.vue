@@ -16,7 +16,7 @@ export default {
   },
  methods:{
    lanzarAPI:function(){
-     this.$store.dispatch('getMovies')
+     this.$store.dispatch('getMovies');
    }
  }
 };
