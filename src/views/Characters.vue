@@ -10,9 +10,26 @@
     multi-sort
     :sort-by="['race']"
     :sort-desc="[false, true]"
+    :single-expand="singleExpand"
+    :expanded.sync="expanded"
+    show-expand
+    item-key="name"
   >
     <template v-slot:top>
-      <h1>The Lord of the Rings Characters</h1>
+      <v-toolbar flat>
+        <v-toolbar-title>Expandable Table</v-toolbar-title>
+        <v-spacer></v-spacer>
+        <v-switch v-model="singleExpand" label="Single expand" class="mt-2"></v-switch>
+      </v-toolbar>
+    </template>
+    <template v-slot:expanded-item="{ headers, item }">
+      <td v-if="item.wikiUrl" :colspan="headers.length">
+        More info about {{ item.name }} in:
+        <a :href="item.wikiUrl" target="_blank" rel="noreferrer">{{item.wikiUrl}}</a>.
+      </td>
+      <td v-else :colspan="headers.length">
+        Sorry, we have no more information from {{ item.name }}.
+      </td>
     </template>
   </v-data-table>
 </template>
@@ -22,6 +39,7 @@ export default {
   name: "Characters",
   data() {
     return {
+      expanded: [],
       singleExpand: false,
       headers: [
         { text: "Name", value: "name", align: "start" },
@@ -33,7 +51,7 @@ export default {
         { text: "Race", value: "race", align: "start" },
         { text: "Realm", value: "realm", align: "start" },
         { text: "Spouse", value: "spouse", align: "start" },
-        { text: "WikiUrl", value: "wikiUrl", align: "start" }
+        // { text: "WikiUrl", value: "wikiUrl", align: "start" }
       ]
     };
   },
