@@ -13,7 +13,7 @@
     :single-expand="singleExpand"
     :expanded.sync="expanded"
     show-expand
-    item-key="name"
+    item-key="_id"
   >
     <template v-slot:top>
       <v-toolbar flat>
