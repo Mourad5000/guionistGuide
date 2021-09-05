@@ -14,7 +14,7 @@ const routes = [
     component: Characters,
   },
   {
-    path:'/character/:id',
+    path:'/:id',
     component:CharacterQuotes
   }
 

@@ -54,7 +54,7 @@ export default {
   },
   computed: {
     loader() {
-      return this.$store.state.moviesLoader;
+      return this.$store.state.charactersLoader;
     },
     characters() {
       return this.$store.state.characters;
@@ -70,8 +70,8 @@ export default {
     },
     handleCharacterClick(value){
       // hacer el dispatch del detalle del character con el id y el nombe
-      this.$store.dispatch('getCharacterQuotes');
-      this.$router.push({path:`character/${value._id}`})
+      this.$store.dispatch('getCharacterQuotes',value._id);
+      this.$router.push({path:`/${value._id}`})
     }
   }
 };

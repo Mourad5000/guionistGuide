@@ -1,5 +1,10 @@
 export default {
+    // Characters view
     charactersLoader:false,
     characters:[],
-    charactersApiError:''
+    charactersApiError:'',
+    // CharacterQuotes view
+    characterQuotesLoader: false,
+    characterQuotes:'',
+    characterQuotesApiError:''
 }

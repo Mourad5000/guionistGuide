@@ -13,7 +13,21 @@ export default {
   LOAD_CHARACTERS_ERROR(state, apiError) {
     state.charactersApiError = false;
     state.charactersLoader = apiError;
-  }
+  },
   // 
+
+  SET_CHARACTER_LOADING(state){
+    state.characterQuotesLoader = true;
+  },
+
+  LOAD_CHARACTERS_QUOTES(state, characterQuotes){
+    state.characterQuotesLoader = false;
+    state.characterQuotes=characterQuotes;
+  },
+
+  LOAD_CHARACTERS_QUOTES_ERROR(state, apiError){
+    state.characterQuotesLoader = false;
+    state.characterQuotesApiError=apiError
+  }
 
 };

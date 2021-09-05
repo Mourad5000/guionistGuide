@@ -23,19 +23,18 @@ export default {
     }
   },
 
-  getCharacterQuotes: async function({ commit }, characterId, characterName) {
+  getCharacterQuotes: async function({ commit }, characterId) {
     try {
       commit(actionTypes.SET_CHARACTER_LOADING, true);
-
       const endPoint = `${APIconstants.API_URL}${APIconstants.LOAD_CHARACTER_QUOTES(characterId)}`;
       const { data } = await axios.get(endPoint, {
         headers: headers
       });
-      commit(actionTypes.LOAD_CHARACTERS_QUOTES, data.docs);
+      commit(actionTypes.LOAD_CHARACTERS_QUOTES,data);
     } catch (error) {
       commit(
         actionTypes.LOAD_CHARACTERS_QUOTES_ERROR,
-        errorMessages.LOAD_CHARACTER_QUOTES_ERROR_MESSAGE(characterName)
+        errorMessages.LOAD_CHARACTERS_ERROR_MESSAGE
       );
     }
   }
