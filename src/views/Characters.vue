@@ -2,7 +2,7 @@
   <v-data-table
     dense
     :headers="headers"
-    :items="movies"
+    :items="characters"
     :items-per-page="20"
     :loading="loader"
     loading-text="Loading... Please wait"
@@ -56,8 +56,8 @@ export default {
     loader() {
       return this.$store.state.moviesLoader;
     },
-    movies() {
-      return this.$store.state.movies;
+    characters() {
+      return this.$store.state.characters;
     }
   },
 
@@ -69,6 +69,8 @@ export default {
       this.$store.dispatch("getCharactersAction");
     },
     handleCharacterClick(value){
+      // hacer el dispatch del detalle del character con el id y el nombe
+      this.$store.dispatch('getCharacterQuotes');
       this.$router.push({path:`character/${value._id}`})
     }
   }

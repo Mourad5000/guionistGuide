@@ -1,5 +1,5 @@
 export default {
-    moviesLoader:false,
-    movies:[],
-    moviesApiError:''
+    charactersLoader:false,
+    characters:[],
+    charactersApiError:''
 }
