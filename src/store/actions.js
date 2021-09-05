@@ -1,19 +1,24 @@
 import axios from "axios";
 import APIconstants from "../constants/APIconstants";
-import headers from "../constants/headers";
+
+const headers={
+  Accept: "application/json",
+  Authorization: "Bearer xvi06TocPJvBmrQC4yZv"
+}
 
 // los commits no deben ser magic strings
-export function getMovies() {
-  return async ({ commit }) => {
+export default {
+  getMovies: async function ({commit}) {
     try {
-        commit("SET_MOVIES_LOADING")
-      const endPoint = `${APIconstants.API_URL}${APIconstants.REQUEST_CHARACTERS}`;
-      const { data } = await axios.get(endPoint, headers);
-      commit("SET_MOVIES", data);
-      console.log(data);
+        commit("SET_MOVIES_LOADING",true);
+        const endPoint = `${APIconstants.API_URL}${APIconstants.REQUEST_CHARACTERS}`;
+        const { data } = await axios.get(endPoint, {
+          headers: headers
+        });
+        commit("SET_MOVIES", data.docs);
     } catch (error) {
-      console.log(error);
-      commit("SET_MOVIES_ERROR", error);
+        commit("SET_MOVIES_ERROR", 'There has been an error loading the characters');
     }
-  };
+  }
 }
+

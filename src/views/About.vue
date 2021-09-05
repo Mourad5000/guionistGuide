@@ -6,13 +6,5 @@
 
 <script>
 export default {
-  computed: {
-    produt() {
-      return this.$store.state.movies;
-    }
-  },
-  mounted() {
-    this.$store.dispatch("getMovies");
-  }
 };
 </script>
