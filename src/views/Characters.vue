@@ -1,23 +1,71 @@
 <template>
-    <div id="product-list-one">
-      <p>hola caracola</p>
-    </div>
+  <v-data-table
+    dense
+    :headers="headers"
+    :items="movies"
+    :items-per-page="20"
+    :loading="loader"
+    loading-text="Loading... Please wait"
+    mobile="true"
+    multi-sort
+    :sort-by="['race']"
+    :sort-desc="[false, true]"
+    :single-expand="singleExpand"
+    :expanded.sync="expanded"
+    show-expand
+    item-key="_id"
+  >
+    <template v-slot:top>
+        <h1>Expandable Table</h1>
+    </template>
+    <template v-slot:expanded-item="{ headers, item }">
+      <td v-if="item.wikiUrl" :colspan="headers.length">
+        More info about {{ item.name }} in:
+        <a :href="item.wikiUrl" target="_blank" rel="noreferrer">{{item.wikiUrl}}</a>.
+      </td>
+      <td v-else :colspan="headers.length">
+        Sorry, we have no more information from {{ item.name }}.
+      </td>
+    </template>
+  </v-data-table>
 </template>
 
 <script>
 export default {
+  name: "Characters",
+  data() {
+    return {
+      expanded: [],
+      singleExpand: true,
+      headers: [
+        { text: "Name", value: "name", align: "start" },
+        { text: "Birth", value: "birth", align: "start" },
+        { text: "Death", value: "death", align: "start" },
+        { text: "Gender", value: "gender", align: "start" },
+        { text: "Hair", value: "hair", align: "start" },
+        { text: "Height", value: "height", align: "start" },
+        { text: "Race", value: "race", align: "start" },
+        { text: "Realm", value: "realm", align: "start" },
+        { text: "Spouse", value: "spouse", align: "start" },
+      ]
+    };
+  },
   computed: {
-    products() {
-      return this.$store.state.products;
+    loader() {
+      return this.$store.state.moviesLoader;
     },
+    movies() {
+      return this.$store.state.movies;
+    }
   },
-  created(){
-    this.lanzarAPI()
+
+  created() {
+    this.getMovies();
   },
- methods:{
-   lanzarAPI:function(){
-     this.$store.dispatch('getMovies');
-   }
- }
+  methods: {
+    getMovies: function() {
+      this.$store.dispatch("getMoviesAction");
+    }
+  }
 };
 </script>

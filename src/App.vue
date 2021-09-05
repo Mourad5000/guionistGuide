@@ -1,5 +1,5 @@
 <template>
-  <v-app>
+  <v-app class="app-wrapper">
     <v-main>
       <router-view/>
     </v-main>
@@ -10,9 +10,10 @@
 
 export default {
   name: 'App',
-
-  data: () => ({
-    //
-  }),
 };
 </script>
+<style>
+.app-wrapper{
+  padding:0px 10px;
+}
+</style>
