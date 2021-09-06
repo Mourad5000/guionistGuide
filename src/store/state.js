@@ -1,5 +1,10 @@
 export default {
-    moviesLoader:false,
-    movies:[],
-    moviesApiError:''
+    // Characters view
+    charactersLoader:false,
+    characters:[],
+    charactersApiError:'',
+    // CharacterQuotes view
+    characterQuotesLoader: false,
+    characterQuotes:'',
+    characterQuotesApiError:''
 }

@@ -1,15 +1,19 @@
 <template>
-  <v-app class="app-wrapper">
-    <v-main>
+  <v-app>
+    <v-main class="app-wrapper">
       <router-view/>
     </v-main>
+      <Footer />
   </v-app>
 </template>
 
 <script>
-
+import Footer from './components/Footer.vue';
 export default {
   name: 'App',
+  components:{
+    Footer
+  }
 };
 </script>
 <style>

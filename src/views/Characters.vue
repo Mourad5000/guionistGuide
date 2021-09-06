@@ -2,7 +2,7 @@
   <v-data-table
     dense
     :headers="headers"
-    :items="movies"
+    :items="characters"
     :items-per-page="20"
     :loading="loader"
     loading-text="Loading... Please wait"
@@ -14,9 +14,11 @@
     :expanded.sync="expanded"
     show-expand
     item-key="_id"
+    class="characters__table"
+    @click:row="handleCharacterClick"
   >
     <template v-slot:top>
-        <h1>Expandable Table</h1>
+        <h1>Characters list</h1>
     </template>
     <template v-slot:expanded-item="{ headers, item }">
       <td v-if="item.wikiUrl" :colspan="headers.length">
@@ -52,20 +54,31 @@ export default {
   },
   computed: {
     loader() {
-      return this.$store.state.moviesLoader;
+      return this.$store.state.charactersLoader;
     },
-    movies() {
-      return this.$store.state.movies;
+    characters() {
+      return this.$store.state.characters;
     }
   },
 
   created() {
-    this.getMovies();
+    this.getCharacters();
   },
   methods: {
-    getMovies: function() {
-      this.$store.dispatch("getMoviesAction");
+    getCharacters: function() {
+      this.$store.dispatch("getCharactersAction");
+    },
+    handleCharacterClick(value){
+      // hacer el dispatch del detalle del character con el id y el nombe
+      this.$store.dispatch('getCharacterQuotes',value._id);
+      this.$router.push({path:`/${value._id}`})
     }
   }
 };
 </script>
+
+<style>
+.characters__table{
+  cursor: pointer;
+}
+</style>

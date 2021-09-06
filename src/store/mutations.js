@@ -1,15 +1,33 @@
+import actionTypes from "../constants/actionTypes";
+
 export default {
-  SET_MOVIES_LOADING(state) {
-    state.moviesLoader = true;
+  CHARACTERS_LOADING(state) {
+    state.charactersLoader = true;
   },
 
-  SET_MOVIES(state, movies) {
-    state.movies = movies;
-    state.moviesLoader = false;
+  LOAD_CHARACTERS(state, characters) {
+    state.characters = characters;
+    state.charactersLoader = false;
   },
 
-  SET_MOVIES_ERROR(state, apiError) {
-    state.moviesLoader = false;
-    state.moviesApiError = apiError;
+  LOAD_CHARACTERS_ERROR(state, apiError) {
+    state.charactersApiError = false;
+    state.charactersLoader = apiError;
+  },
+  // 
+
+  SET_CHARACTER_LOADING(state){
+    state.characterQuotesLoader = true;
+  },
+
+  LOAD_CHARACTERS_QUOTES(state, characterQuotes){
+    state.characterQuotesLoader = false;
+    state.characterQuotes=characterQuotes;
+  },
+
+  LOAD_CHARACTERS_QUOTES_ERROR(state, apiError){
+    state.characterQuotesLoader = false;
+    state.characterQuotesApiError=apiError
   }
+
 };
