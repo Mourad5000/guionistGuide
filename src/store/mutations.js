@@ -36,5 +36,6 @@ export default {
   }
 
   // hacer las mutations
-
+  // pintar en el state todas las cosas que pasan y en el getter filtrar las quotes con las pelis que hay 
+  // y generar un nuevo objeto en el state que sera del que bebera la tabla
 };
