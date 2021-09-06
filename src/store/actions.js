@@ -44,7 +44,7 @@ export default {
 
   getMovies:async function ({commit}){
     try {
-      commit(actionTypes.LOAD_MOVIES, true);
+      commit(actionTypes.LOAD_MOVIES_LOADER, true);
       const endPoint = `${APIconstants.API_URL}${MOVIES}`;
 
       const {data} = await axios.get(endPoint, {

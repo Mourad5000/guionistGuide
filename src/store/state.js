@@ -8,5 +8,7 @@ export default {
     characterQuotes:'',
     characterQuotesApiError:'',
     // movies initialState
-    moviesLoader:false
+    moviesLoader:false,
+    movies:[],
+    moviesError:''
 }

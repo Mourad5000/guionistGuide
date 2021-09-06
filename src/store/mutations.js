@@ -31,11 +31,12 @@ export default {
   },
   // 
 
-  LOAD_MOVIES(state){
+  LOAD_MOVIES_LOADER(state){
     state.moviesLoader = true;
   }
 
   // hacer las mutations
   // pintar en el state todas las cosas que pasan y en el getter filtrar las quotes con las pelis que hay 
   // y generar un nuevo objeto en el state que sera del que bebera la tabla
+
 };
