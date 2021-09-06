@@ -18,7 +18,7 @@
     @click:row="handleCharacterClick"
   >
     <template v-slot:top>
-        <h1>Expandable Table</h1>
+        <h1>Characters list</h1>
     </template>
     <template v-slot:expanded-item="{ headers, item }">
       <td v-if="item.wikiUrl" :colspan="headers.length">

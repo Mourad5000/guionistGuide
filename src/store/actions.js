@@ -30,6 +30,7 @@ export default {
       const { data } = await axios.get(endPoint, {
         headers: headers
       });
+      console.log(data);
       commit(actionTypes.LOAD_CHARACTERS_QUOTES,data);
     } catch (error) {
       commit(
