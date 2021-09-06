@@ -7,9 +7,7 @@
     :loading="loader"
     loading-text="Loading... Please wait"
     mobile="true"
-    multi-sort
-    :sort-by="['race']"
-    :sort-desc="[false, true]"
+ 
     :single-expand="singleExpand"
     :expanded.sync="expanded"
     show-expand
@@ -26,13 +24,16 @@
         <a :href="item.wikiUrl" target="_blank" rel="noreferrer">{{item.wikiUrl}}</a>.
       </td>
       <td v-else :colspan="headers.length">
-        Sorry, we have no more information from {{ item.name }}.
+        Sorry, we don't have more information of {{ item.name }}.
       </td>
     </template>
   </v-data-table>
 </template>
 
 <script>
+//    multi-sort
+    // :sort-by="['race']"
+    // :sort-desc="[false, true]"
 export default {
   name: "Characters",
   data() {

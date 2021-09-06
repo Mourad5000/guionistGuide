@@ -6,5 +6,7 @@ export default {
     // CharacterQuotes view
     characterQuotesLoader: false,
     characterQuotes:'',
-    characterQuotesApiError:''
+    characterQuotesApiError:'',
+    // movies initialState
+    moviesLoader:false
 }

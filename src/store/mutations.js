@@ -16,18 +16,25 @@ export default {
   },
   // 
 
-  SET_CHARACTER_LOADING(state){
+  LOAD_CHARACTER_LOADING(state){
     state.characterQuotesLoader = true;
   },
 
-  LOAD_CHARACTERS_QUOTES(state, characterQuotes){
+  LOAD_CHARACTER_QUOTES(state, characterQuotes){
     state.characterQuotesLoader = false;
     state.characterQuotes=characterQuotes;
   },
 
-  LOAD_CHARACTERS_QUOTES_ERROR(state, apiError){
+  LOAD_CHARACTER_QUOTES_ERROR(state, apiError){
     state.characterQuotesLoader = false;
     state.characterQuotesApiError=apiError
+  },
+  // 
+
+  LOAD_MOVIES(state){
+    state.moviesLoader = true;
   }
+
+  // hacer las mutations
 
 };
