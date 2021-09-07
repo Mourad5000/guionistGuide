@@ -40,9 +40,4 @@ export default {
     state.movies=movies;
   },
 
-  LOAD_MOVIES_ERROR(state, apiError){
-    state.moviesLoader = false;
-    state.moviesError=apiError
-  },
-
 };
