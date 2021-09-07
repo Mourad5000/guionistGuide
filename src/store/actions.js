@@ -52,7 +52,7 @@ export default {
           }
         });
       });
-      console.log(quotesArray);
+      // TODO: create the murtation, commited, in the compo get the data
     } catch (error) {
       commit(
         actionTypes.LOAD_CHARACTER_QUOTES_ERROR,
