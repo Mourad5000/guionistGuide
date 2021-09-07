@@ -1,8 +1,8 @@
 import actionTypes from "../constants/actionTypes";
 
 export default {
-  CHARACTERS_LOADING(state) {
-    state.charactersLoader = true;
+  CHARACTERS_LOADING(state,bool) {
+    state.charactersLoader = bool;
   },
 
   LOAD_CHARACTERS(state, characters) {
@@ -16,13 +16,13 @@ export default {
   },
   // 
 
-  LOAD_CHARACTER_LOADING(state){
-    state.characterQuotesLoader = true;
+  LOAD_CHARACTER_LOADING(state,bool){
+    state.characterQuotesLoader = bool;
   },
 
   LOAD_CHARACTER_QUOTES(state, characterQuotes){
     state.characterQuotesLoader = false;
-    state.characterQuotes=characterQuotes;
+    state.characterQuotesWMovieId=characterQuotes;
   },
 
   LOAD_CHARACTER_QUOTES_ERROR(state, apiError){
@@ -31,12 +31,18 @@ export default {
   },
   // 
 
-  LOAD_MOVIES_LOADER(state){
-    state.moviesLoader = true;
-  }
+  LOAD_MOVIES_LOADER(state,bool){
+    state.moviesLoader = bool;
+  },
 
-  // hacer las mutations
-  // pintar en el state todas las cosas que pasan y en el getter filtrar las quotes con las pelis que hay 
-  // y generar un nuevo objeto en el state que sera del que bebera la tabla
+  LOAD_MOVIES(state, movies){
+    state.moviesLoader = false;
+    state.movies=movies;
+  },
+
+  LOAD_MOVIES_ERROR(state, apiError){
+    state.moviesLoader = false;
+    state.moviesError=apiError
+  },
 
 };

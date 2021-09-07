@@ -19,46 +19,45 @@ export default {
       });
       commit(actionTypes.LOAD_CHARACTERS, data.docs);
     } catch (error) {
-      commit(actionTypes.LOAD_CHARACTERS_ERROR, errorMessages.LOAD_API_ERROR_MESSAGE('characters'));
+      commit(actionTypes.LOAD_CHARACTERS_ERROR, errorMessages.LOAD_API_ERROR_MESSAGE("characters"));
     }
   },
 
   getCharacterQuotes: async function({ commit }, characterId) {
     try {
       commit(actionTypes.LOAD_CHARACTER_LOADING, true);
-      const endPoint = `${APIconstants.API_URL}${APIconstants.LOAD_CHARACTER_QUOTES(characterId)}`;
+      const getCharacterQuotesEndPoint = `${
+        APIconstants.API_URL
+      }${APIconstants.LOAD_CHARACTER_QUOTES(characterId)}`;
 
-      const { data } = await axios.get(endPoint, {
+      const getQuotes = axios.get(getCharacterQuotesEndPoint, {
         headers: headers
       });
-      commit(actionTypes.LOAD_CHARACTER_QUOTES,data.docs);
-      // hacer la llamada a la api de movies aqui asi utilizamos menos recursos
-      dispatchEvent('getMovies');
+
+      const getMoviesEndPoint = `${APIconstants.API_URL}${APIconstants.MOVIES}`;
+      const getMovies = axios.get(getMoviesEndPoint, {
+        headers: headers
+      });
+
+      const resolvedData = await Promise.all([getQuotes, getMovies]);
+
+      const quotes = resolvedData[0].data.docs;
+      const movies = resolvedData[1].data.docs;
+
+      const quotesArray = [];
+      quotes.forEach(quote => {
+        movies.forEach(movie => {
+          if (movie._id === quote.movie) {
+            quotesArray.push({ ...quote, movieName: movie.name });
+          }
+        });
+      });
+      console.log(quotesArray);
     } catch (error) {
       commit(
         actionTypes.LOAD_CHARACTER_QUOTES_ERROR,
-        errorMessages.LOAD_API_ERROR_MESSAGE('character quotes')
-      );
-    }
-  },
-
-  getMovies:async function ({commit}){
-    try {
-      commit(actionTypes.LOAD_MOVIES_LOADER, true);
-      const endPoint = `${APIconstants.API_URL}${MOVIES}`;
-
-      const {data} = await axios.get(endPoint, {
-        headers: headers
-      })
-
-      commit(actionTypes.LOAD_MOVIES,data.docs);
-      
-    } catch (error) {
-      commit(
-        actionTypes.LOAD_MOVIES_ERROR,
-        errorMessages.LOAD_CHARACTERS_ERROR_MESSAGE('movies')
+        errorMessages.LOAD_API_ERROR_MESSAGE("character quotes")
       );
     }
   }
-
 };

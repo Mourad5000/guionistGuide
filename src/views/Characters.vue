@@ -7,7 +7,6 @@
     :loading="loader"
     loading-text="Loading... Please wait"
     mobile="true"
- 
     :single-expand="singleExpand"
     :expanded.sync="expanded"
     show-expand
@@ -16,12 +15,15 @@
     @click:row="handleCharacterClick"
   >
     <template v-slot:top>
-        <h1>Characters list</h1>
+      <h1>Characters list</h1>
     </template>
     <template v-slot:expanded-item="{ headers, item }">
       <td v-if="item.wikiUrl" :colspan="headers.length">
         More info about {{ item.name }} in:
-        <a :href="item.wikiUrl" target="_blank" rel="noreferrer">{{item.wikiUrl}}</a>.
+        <a :href="item.wikiUrl" target="_blank" rel="noreferrer">{{
+          item.wikiUrl
+        }}</a
+        >.
       </td>
       <td v-else :colspan="headers.length">
         Sorry, we don't have more information of {{ item.name }}.
@@ -32,8 +34,8 @@
 
 <script>
 //    multi-sort
-    // :sort-by="['race']"
-    // :sort-desc="[false, true]"
+// :sort-by="['race']"
+// :sort-desc="[false, true]"
 export default {
   name: "Characters",
   data() {
@@ -50,7 +52,7 @@ export default {
         { text: "Race", value: "race", align: "start" },
         { text: "Realm", value: "realm", align: "start" },
         { text: "Spouse", value: "spouse", align: "start" },
-      ]
+      ],
     };
   },
   computed: {
@@ -59,27 +61,27 @@ export default {
     },
     characters() {
       return this.$store.state.characters;
-    }
+    },
   },
 
   created() {
     this.getCharacters();
   },
   methods: {
-    getCharacters: function() {
+    getCharacters: function () {
       this.$store.dispatch("getCharactersAction");
     },
-    handleCharacterClick(value){
+    handleCharacterClick(value) {
       // hacer el dispatch del detalle del character con el id y el nombe
-      this.$store.dispatch('getCharacterQuotes',value._id);
-      this.$router.push({path:`/${value._id}`})
-    }
-  }
+      this.$store.dispatch("getCharacterQuotes", value._id);
+      this.$router.push({ path: `/${value._id}` });
+    },
+  },
 };
 </script>
 
 <style>
-.characters__table{
+.characters__table {
   cursor: pointer;
 }
 </style>

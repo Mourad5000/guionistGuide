@@ -40,6 +40,11 @@ export default {
 
     loader() {
       return this.$store.state.characterQuotesLoader;
+    },
+
+    // traer el setter y eso sera el que al fin se pintara en el compo
+    characterQuotesWMovieName(){
+      return this.$store.state.characterQuotesWMovieName;
     }
   },
 };
