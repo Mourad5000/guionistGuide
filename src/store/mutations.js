@@ -20,9 +20,9 @@ export default {
     state.characterQuotesLoader = bool;
   },
 
-  LOAD_CHARACTER_QUOTES(state, characterQuotes){
+  LOAD_CHARACTER_QUOTES_BY_NAME(state, characterQuotesWName){
     state.characterQuotesLoader = false;
-    state.characterQuotesWMovieId=characterQuotes;
+    state.characterQuotesWMovieId=characterQuotesWName;
   },
 
   LOAD_CHARACTER_QUOTES_ERROR(state, apiError){
@@ -31,13 +31,5 @@ export default {
   },
   // 
 
-  LOAD_MOVIES_LOADER(state,bool){
-    state.moviesLoader = bool;
-  },
-
-  LOAD_MOVIES(state, movies){
-    state.moviesLoader = false;
-    state.movies=movies;
-  },
 
 };

@@ -31,8 +31,8 @@ export default {
   },
   computed: {
     characterQuotes() {
-        if (this.$store.state.characterQuotes) {
-            return this.$store.state.characterQuotes;
+        if (this.$store.state.characterQuotesWMovieId) {
+            return this.$store.state.characterQuotesWMovieId;
         } else {
             return this.$store.dispatch('getCharacterQuotes',this.$route.params.id);
         } 
@@ -41,11 +41,6 @@ export default {
     loader() {
       return this.$store.state.characterQuotesLoader;
     },
-
-    // traer el setter y eso sera el que al fin se pintara en el compo
-    characterQuotesWMovieName(){
-      return this.$store.state.characterQuotesWMovieName;
-    }
   },
 };
 </script>

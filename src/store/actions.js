@@ -52,7 +52,7 @@ export default {
           }
         });
       });
-      // TODO: create the murtation, commited, in the compo get the data
+      commit(actionTypes.LOAD_CHARACTER_QUOTES_BY_NAME, quotesArray)
     } catch (error) {
       commit(
         actionTypes.LOAD_CHARACTER_QUOTES_ERROR,
