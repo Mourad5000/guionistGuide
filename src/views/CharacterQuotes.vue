@@ -32,7 +32,6 @@
 <script>
 export default {
   name: "CharacersQuote",
-
   data() {
     return {
       search: '',
@@ -53,7 +52,6 @@ export default {
         );
       }
     },
-
     loader() {
       return this.$store.state.characterQuotesLoader;
     },
