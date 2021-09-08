@@ -1,4 +1,8 @@
 <template>
+  <v-card>
+       <div v-if="characterError">
+      <Alert alertType="error" :body="errorMessages.LOAD_API_ERROR_MESSAGE('characters')"/>
+    </div>
   <v-data-table
     dense
     :headers="headers"
@@ -33,13 +37,23 @@
       </td>
     </template>
   </v-data-table>
+  </v-card>
 </template>
 
 <script>
+
+// constants
+import errorMessages from '../constants/errorMessages';
+
+// components
+import Alert from '../components/Alert.vue';
+
 export default {
   name: "Characters",
+  components:{Alert},
   data() {
     return {
+      errorMessages:errorMessages,
       expanded: [],
       singleExpand: true,
       headers: [
@@ -62,6 +76,9 @@ export default {
     characters() {
       return this.$store.state.characters;
     },
+    characterError(){
+      return this.$store.state.charactersApiError;
+    }
   },
 
   created() {

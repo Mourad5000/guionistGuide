@@ -1,5 +1,5 @@
 <template>
-  <v-alert :type="alertType"> I'm a success alert. </v-alert>
+  <v-alert :type="alertType"> {{body}} </v-alert>
 </template>
 
 <script>
