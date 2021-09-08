@@ -6,7 +6,7 @@
       <v-text-field
         v-model="search"
         append-icon="mdi-magnify"
-        label="Search"
+        label="Search movie or quote"
         single-line
         hide-details
       ></v-text-field>
@@ -35,7 +35,7 @@ export default {
 
   data() {
     return {
-      search: "",
+      search: '',
       headers: [
         { text: "Quote", value: "dialog", align: "start" },
         { text: "Movie", value: "movieName", align: "start" },
