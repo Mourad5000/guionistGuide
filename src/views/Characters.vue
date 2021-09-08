@@ -13,6 +13,9 @@
     item-key="_id"
     class="characters__table"
     @click:row="handleCharacterClick"
+    multi-sort
+    :sort-by="['race']"
+    :sort-desc="[false, true]"
   >
     <template v-slot:top>
       <h1>Characters list</h1>
@@ -33,9 +36,6 @@
 </template>
 
 <script>
-//    multi-sort
-// :sort-by="['race']"
-// :sort-desc="[false, true]"
 export default {
   name: "Characters",
   data() {
@@ -69,7 +69,7 @@ export default {
   },
   methods: {
     getCharacters: function () {
-      this.$store.dispatch("getCharactersAction");
+      this.$store.dispatch("getCharacters");
     },
     handleCharacterClick(value) {
       // hacer el dispatch del detalle del character con el id y el nombe

@@ -10,7 +10,7 @@ const headers = {
 
 // los commits no deben ser magic strings
 export default {
-  getCharactersAction: async function({ commit }) {
+  getCharacters: async function({ commit }) {
     try {
       commit(actionTypes.CHARACTERS_LOADING, true);
       const endPoint = `${APIconstants.API_URL}${APIconstants.REQUEST_CHARACTERS}`;
