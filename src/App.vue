@@ -2,6 +2,7 @@
   <v-app>
     <v-main class="app-wrapper">
       <router-view/>
+    <notifications group="notification" position="bottom right" />
     </v-main>
       <Footer />
   </v-app>

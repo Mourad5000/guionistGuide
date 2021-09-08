@@ -7,4 +7,6 @@ export default {
     characterQuotesLoader: false,
     characterQuotesWMovieId:[],
     characterQuotesApiError:'',
+    // RequestsList view
+    backEndRequests:[]
 }

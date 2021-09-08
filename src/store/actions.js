@@ -59,5 +59,29 @@ export default {
         errorMessages.LOAD_API_ERROR_MESSAGE("character quotes")
       );
     }
+  },
+
+  sendBackEndRequests: function ({commit},{editedItem,request}){
+    let backEndRequest={}
+    switch (request) {
+      case 'delete':
+         backEndRequest={...editedItem,action:'DELETE ITEM', method:'DELETE',date:Date.now()};
+        commit(actionTypes.BACK_END_REQUEST,backEndRequest)
+        break;
+      case 'create':
+         backEndRequest={...editedItem,action:'CREATE ITEM', method:'POST',date:Date.now()};
+        commit(actionTypes.BACK_END_REQUEST,backEndRequest)
+        break;
+      case 'upload':
+         backEndRequest={...editedItem,action:'UPLOAD ITEM', method:'PATCH',date:Date.now()};
+        commit(actionTypes.BACK_END_REQUEST,backEndRequest)
+        break;
+    
+      default:
+         backEndRequest={...editedItem,action:'CREATE ITEM', method:'POST',date:Date.now()};
+        commit(actionTypes.BACK_END_REQUEST,backEndRequest)
+        break;
+    }
+    return backEndRequest;
   }
 };

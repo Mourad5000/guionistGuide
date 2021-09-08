@@ -183,7 +183,17 @@ export default {
 
     deleteItemConfirm() {
       this.characterQuotes.splice(this.editedIndex, 1);
+      this.$store.dispatch("sendBackEndRequests", {
+        editedItem: this.editedItem,
+        request: "delete",
+      });
       this.closeDelete();
+      this.$notify({
+        group: "notification",
+        type: "success",
+        title: "Item deleted succesfully!",
+        text: "This action trigger a DELETE_ITEM to back end",
+      });
     },
 
     close() {
@@ -205,8 +215,28 @@ export default {
     save() {
       if (this.editedIndex > -1) {
         Object.assign(this.characterQuotes[this.editedIndex], this.editedItem);
+        this.$store.dispatch("sendBackEndRequests", {
+          editedItem: this.editedItem,
+          request: "upload",
+        });
+        this.$notify({
+          group: "notification",
+          type: "success",
+          title: "Item uploaded succesfully!",
+          text: "This action trigger a UPLOAD_ITEM to back end",
+        });
       } else {
         this.characterQuotes.push(this.editedItem);
+        this.$store.dispatch("sendBackEndRequests", {
+          editedItem: this.editedItem,
+          request: "create",
+        });
+        this.$notify({
+          group: "notification",
+          type: "success",
+          title: "Item created succesfully!",
+          text: "This action trigger a ADD_ITEM to back end",
+        });
       }
       this.close();
     },

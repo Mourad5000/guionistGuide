@@ -31,5 +31,10 @@ export default {
   },
   // 
 
+  BACK_END_REQUEST(state,itemAndRequest){
+    console.log(itemAndRequest);
+    state.backEndRequests.push(itemAndRequest)
+  }
+
 
 };

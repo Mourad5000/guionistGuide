@@ -4,6 +4,7 @@ import VueRouter from 'vue-router';
 // components
 import Characters from '../views/Characters.vue'
 import CharacterQuotes from '../views/CharacterQuotes.vue'
+import RequestsList from '../views/RequestsList.vue'
 
 Vue.use(VueRouter);
 
@@ -14,9 +15,13 @@ const routes = [
     component: Characters,
   },
   {
+    path:'/backRequests',
+    component:RequestsList
+  },
+  {
     path:'/:id',
     component:CharacterQuotes
-  }
+  },
 
 ];
 
