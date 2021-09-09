@@ -52,7 +52,7 @@ export default {
           }
         });
       });
-      commit(actionTypes.LOAD_CHARACTER_QUOTES_BY_NAME, quotesArray)
+      commit(actionTypes.LOAD_CHARACTER_QUOTES_BY_NAME, quotesArray);
     } catch (error) {
       commit(
         actionTypes.LOAD_CHARACTER_QUOTES_ERROR,
@@ -61,25 +61,36 @@ export default {
     }
   },
 
-  sendBackEndRequests: function ({commit},{editedItem,request}){
-    let backEndRequest={}
+  sendBackEndRequests: function({ commit }, { editedItem, request }) {
+    let backEndRequest = {};
+    const today = new Date();
+    const dd = String(today.getDate()).padStart(2, "0");
+    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
+    const yyyy = today.getFullYear();
+
+    const currentData = mm + "/" + dd + "/" + yyyy;
     switch (request) {
-      case 'delete':
-         backEndRequest={...editedItem,action:'DELETE ITEM', method:'DELETE',date:Date.now()};
-        commit(actionTypes.BACK_END_REQUEST,backEndRequest)
+      case "delete":
+        backEndRequest = { ...editedItem, action: "DELETE ITEM", method: "DELETE", date: currentData };
+        commit(actionTypes.BACK_END_REQUEST, backEndRequest);
         break;
-      case 'create':
-         backEndRequest={...editedItem,action:'CREATE ITEM', method:'POST',date:Date.now()};
-        commit(actionTypes.BACK_END_REQUEST,backEndRequest)
+      case "create":
+        backEndRequest = { ...editedItem, action: "CREATE ITEM", method: "POST", date: currentData };
+        commit(actionTypes.BACK_END_REQUEST, backEndRequest);
         break;
-      case 'upload':
-         backEndRequest={...editedItem,action:'UPLOAD ITEM', method:'PATCH',date:Date.now()};
-        commit(actionTypes.BACK_END_REQUEST,backEndRequest)
+      case "upload":
+        backEndRequest = {
+          ...editedItem,
+          action: "UPLOAD ITEM",
+          method: "PATCH",
+          date: currentData
+        };
+        commit(actionTypes.BACK_END_REQUEST, backEndRequest);
         break;
-    
+
       default:
-         backEndRequest={...editedItem,action:'CREATE ITEM', method:'POST',date:Date.now()};
-        commit(actionTypes.BACK_END_REQUEST,backEndRequest)
+        backEndRequest = { ...editedItem, action: "CREATE ITEM", method: "POST", date: currentData };
+        commit(actionTypes.BACK_END_REQUEST, backEndRequest);
         break;
     }
     return backEndRequest;

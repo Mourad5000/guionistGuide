@@ -1,24 +1,27 @@
 <template>
     <v-card>
-    <div v-if="backEndRequests === 0">
-      <Alert alertType="info" body="There have been no requests to back-end"/>
-
+    <div v-if="this.$store.state.backEndRequests.length === 0">
+      <Alert alertType="info" body="There are no requests to the back end yet"/>
     </div>
-    <h1 class="font-weight-black display-3">Servers</h1>
-
     <v-data-table
-      class="elevation-1"
+          class="characters__table"
       :headers="headers"
       :items="backEndRequests"
       :items-per-page="15"
+      :sort-by="['date']"
+      mobile="true"
     >
     </v-data-table>
     </v-card>
 </template>
 
 <script>
+import Alert from '../components/Alert.vue'
 export default {
   name: "RequestsList",
+  components:{
+      Alert
+  },
   data() {
     return {
       headers: [

@@ -6,6 +6,9 @@
         :body="errorMessages.LOAD_API_ERROR_MESSAGE('character quotes')"
       />
     </div>
+    <div v-if="this.$store.state.characterQuotesWMovieId.length === 0">
+      <Alert alertType="info" body="There are no quotes for this character" />
+    </div>
     <v-card-title v-else>
       Movie
       <v-spacer></v-spacer>

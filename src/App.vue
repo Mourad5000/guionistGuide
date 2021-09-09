@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <Header />
     <v-main class="app-wrapper">
       <router-view/>
     <notifications group="notification" position="bottom right" />
@@ -10,10 +11,11 @@
 
 <script>
 import Footer from './components/Footer.vue';
+import Header from './components/Header.vue';
 export default {
   name: 'App',
   components:{
-    Footer
+    Footer, Header
   }
 };
 </script>
