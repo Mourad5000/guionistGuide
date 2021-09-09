@@ -1,7 +1,13 @@
 import axios from "axios";
+
+// constants
 import APIconstants from "../constants/APIconstants";
 import actionTypes from "../constants/actionTypes";
 import errorMessages from "../constants/errorMessages";
+
+// utils
+import convertDate from "../assets/utils/convertDate";
+
 
 const headers = {
   Accept: "application/json",
@@ -63,12 +69,10 @@ export default {
 
   sendBackEndRequests: function({ commit }, { editedItem, request }) {
     let backEndRequest = {};
-    const today = new Date();
-    const dd = String(today.getDate()).padStart(2, "0");
-    const mm = String(today.getMonth() + 1).padStart(2, "0"); //January is 0!
-    const yyyy = today.getFullYear();
+    const currentData = convertDate();
 
-    const currentData = mm + "/" + dd + "/" + yyyy;
+    console.log(currentData);
+
     switch (request) {
       case "delete":
         backEndRequest = { ...editedItem, action: "DELETE ITEM", method: "DELETE", date: currentData };
