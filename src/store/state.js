@@ -5,6 +5,8 @@ export default {
     charactersApiError:'',
     // CharacterQuotes view
     characterQuotesLoader: false,
-    characterQuotes:'',
-    characterQuotesApiError:''
+    characterQuotesWMovieId:[],
+    characterQuotesApiError:'',
+    // RequestsList view
+    backEndRequests:[]
 }

@@ -1,4 +1,8 @@
 <template>
+  <v-card>
+       <div v-if="characterError">
+      <Alert alertType="error" :body="errorMessages.LOAD_API_ERROR_MESSAGE('characters')"/>
+    </div>
   <v-data-table
     dense
     :headers="headers"
@@ -7,36 +11,49 @@
     :loading="loader"
     loading-text="Loading... Please wait"
     mobile="true"
-    multi-sort
-    :sort-by="['race']"
-    :sort-desc="[false, true]"
     :single-expand="singleExpand"
     :expanded.sync="expanded"
     show-expand
     item-key="_id"
     class="characters__table"
     @click:row="handleCharacterClick"
+    multi-sort
+    :sort-by="['race']"
+    :sort-desc="[false, true]"
   >
     <template v-slot:top>
-        <h1>Characters list</h1>
+      <h1>Characters list</h1>
     </template>
     <template v-slot:expanded-item="{ headers, item }">
       <td v-if="item.wikiUrl" :colspan="headers.length">
         More info about {{ item.name }} in:
-        <a :href="item.wikiUrl" target="_blank" rel="noreferrer">{{item.wikiUrl}}</a>.
+        <a :href="item.wikiUrl" target="_blank" rel="noreferrer">{{
+          item.wikiUrl
+        }}</a
+        >.
       </td>
       <td v-else :colspan="headers.length">
-        Sorry, we have no more information from {{ item.name }}.
+        Sorry, we don't have more information of {{ item.name }}.
       </td>
     </template>
   </v-data-table>
+  </v-card>
 </template>
 
 <script>
+
+// constants
+import errorMessages from '../constants/errorMessages';
+
+// components
+import Alert from '../components/Alert.vue';
+
 export default {
   name: "Characters",
+  components:{Alert},
   data() {
     return {
+      errorMessages:errorMessages,
       expanded: [],
       singleExpand: true,
       headers: [
@@ -49,7 +66,7 @@ export default {
         { text: "Race", value: "race", align: "start" },
         { text: "Realm", value: "realm", align: "start" },
         { text: "Spouse", value: "spouse", align: "start" },
-      ]
+      ],
     };
   },
   computed: {
@@ -58,6 +75,9 @@ export default {
     },
     characters() {
       return this.$store.state.characters;
+    },
+    characterError(){
+      return this.$store.state.charactersApiError;
     }
   },
 
@@ -65,20 +85,20 @@ export default {
     this.getCharacters();
   },
   methods: {
-    getCharacters: function() {
-      this.$store.dispatch("getCharactersAction");
+    getCharacters: function () {
+      this.$store.dispatch("getCharacters");
     },
-    handleCharacterClick(value){
+    handleCharacterClick(value) {
       // hacer el dispatch del detalle del character con el id y el nombe
-      this.$store.dispatch('getCharacterQuotes',value._id);
-      this.$router.push({path:`/${value._id}`})
-    }
-  }
+      this.$store.dispatch("getCharacterQuotes", value._id);
+      this.$router.push({ path: `/${value._id}` });
+    },
+  },
 };
 </script>
 
 <style>
-.characters__table{
+.characters__table {
   cursor: pointer;
 }
 </style>
